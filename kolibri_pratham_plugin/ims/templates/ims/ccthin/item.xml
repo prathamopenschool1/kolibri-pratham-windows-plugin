@@ -1,0 +1,6 @@
+{% if node.available and node.level < maxlevel %}<item identifier="i_{{ node.id }}" identifierref="r_{{ node.id }}">
+<title>{{ node.title }}</title>
+{% for child in node.get_children %}
+    {% with node=child %}{% include "ims/ccthin/item.xml" %}{% endwith %}
+{% endfor %}
+</item>{% endif %}
