@@ -14,7 +14,7 @@ from rest_framework.response import Response
 from pprint import pprint
 import random
 import string
-import os 
+import os
 import json
 import datetime
 import sys
@@ -66,28 +66,28 @@ class DataStoreViewset(viewsets.ModelViewSet):
                 now = datetime.datetime.now()
 
                 view_to_crl = {
-                                "device_id": str(device_id).encode("ascii","replace"),
-                                "serial_id": serial_id.encode("ascii","replace"),
-                                "app_name": app_name.encode("ascii","replace"), 
-                                "apk_version": apk_version.encode("ascii","replace"),
+                                "device_id": str(device_id).encode("ascii", "replace").decode(),
+                                "serial_id": serial_id.encode("ascii", "replace").decode(),
+                                "app_name": app_name.encode("ascii", "replace").decode(),
+                                "apk_version": apk_version.encode("ascii", "replace").decode(),
                                 "score_count": score_count,
-                                "pratham_code": pratham_code.encode("ascii","replace"),
-                                "device_name": device_name.encode("ascii", "replace"),
+                                "pratham_code": pratham_code.encode("ascii", "replace").decode(),
+                                "device_name": device_name.encode("ascii", "replace").decode(),
                                 "date": now.strftime("%Y-%m-%d %H:%M:%S")
-                              }
-                
-                view_to_crl = str(view_to_crl).encode("ascii","replace")
+                            }
+
+                view_to_crl = str(view_to_crl).encode("ascii", "replace").decode()
 
                 try:
                     with open(os.path.join(r"D:\Kolibri_data_bkp\AutoSummaryBackup",
                                            'score_data.json'), "a") as newfile:
-                        newfile.writelines(view_to_crl+",")
+                        newfile.writelines(view_to_crl.encode().decode()+",")
                         newfile.write("\n")
                 except Exception as e:
                     print(e)
 
         show_data()
-                
+
 # def get_queryset(self):
     #     self.queryset = DataStore.objects.all()
     #     self.filter_name = self.request.query_params.get('filter_name', None)
