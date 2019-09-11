@@ -45,7 +45,7 @@ class DataStoreViewset(viewsets.ModelViewSet):
         def save_in_folder():
             if serializer.data['table_name'] == 'USAGEDATA':
                 randstr = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(N))
-                with open(os.path.join(r"D:\Kolibri_data_bkp\AutoDataBackup",
+                with open(os.path.join(r"C:\prathamdata\AutoDataBackup",
                                        randstr+'.json'), "w+") as outfile:
                     json.dump(self.request.data, outfile, indent=4, sort_keys=True)
             else:
@@ -79,7 +79,7 @@ class DataStoreViewset(viewsets.ModelViewSet):
                 view_to_crl = str(view_to_crl).encode("ascii", "replace").decode()
 
                 try:
-                    with open(os.path.join(r"D:\Kolibri_data_bkp\AutoSummaryBackup",
+                    with open(os.path.join(r"C:\prathamdata\AutoSummaryBackup",
                                            'score_data.json'), "a") as newfile:
                         newfile.writelines(view_to_crl.encode().decode()+",")
                         newfile.write("\n")
